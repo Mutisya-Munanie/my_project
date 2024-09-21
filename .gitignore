@@ -1,0 +1,18 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment variables
+.env
+
+# Database
+db.sqlite3
+
+# Logs
+*.log
+
+# IDE and editor directories
+.vscode/
+.idea/
+

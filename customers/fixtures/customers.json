@@ -1,0 +1,18 @@
+[
+    {
+        "model": "customers.customer",
+        "pk": 1,
+        "fields": {
+            "name": "Dorcas Mutisya",
+            "code": "DM08"
+        }
+    },
+    {
+        "model": "customers.customer",
+        "pk": 2,
+        "fields": {
+            "name": "Little Munaa",
+            "code": "LM08"
+        }
+    }
+]

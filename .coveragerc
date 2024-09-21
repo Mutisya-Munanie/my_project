@@ -1,0 +1,22 @@
+[run]
+branch = True
+source = 
+    .
+
+[report]
+omit =
+    
+    
+    */__init__.py
+    */settings.py
+    */manage.py
+    */wsgi.py
+    */asgi.py
+    */migrations.py
+    
+    # Add any other files or directories you want to exclude
+    
+
+
+
+

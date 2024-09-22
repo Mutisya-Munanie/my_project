@@ -1,42 +1,25 @@
-name: CI/CD Pipeline
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+# Set the working directory in the container
+WORKDIR /app
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'  # Adjust as needed
+# Copy only requirements.txt first (to leverage Docker cache)
+COPY requirements.txt /app/
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+# Install any dependencies specified in requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-      - name: Run tests with coverage
-        run: |
-          pytest --cov=customers_orders_project tests/
-        
-      - name: Build Docker image
-        run: |
-          docker build -t your-docker-image-name .
+# Copy the current directory contents into the container
+COPY . /app/
 
-      - name: Log in to Docker Hub
-        run: |
-          echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-        
-      - name: Push Docker image
-        run: |
-          docker push your-docker-image-name
+# Ensure the database is ready before applying migrations and starting the server
+CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 customers_orders_project.wsgi:application"]
+
+
 
 

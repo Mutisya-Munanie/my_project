@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432  # Specifies the target port
+  selector:
+    app: postgres
+  clusterIP: None  # To make it a headless service for internal communication

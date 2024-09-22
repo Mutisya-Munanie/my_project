@@ -45,8 +45,16 @@ AFRICASTALKING_API_KEY = env('AFRICASTALKING_API_KEY', default='default_api_key'
 
 # Database configuration
 DATABASES = {
-    'default': env.db_url('DATABASE_URL', default='postgres://dorcas_mutisya:1244@localhost:5432/Customer_Order'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Customer_Order',  
+        'USER': 'dorcas_mutisya',  
+        'PASSWORD': '1244',        
+        'HOST': 'db',              
+        'PORT': '5432',            # Default PostgreSQL port
+    }
 }
+
 
 # Application definition
 INSTALLED_APPS = [

@@ -1,8 +1,8 @@
-version: '3'
 
+version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:13  
     environment:
       POSTGRES_DB: Customer_Order
       POSTGRES_USER: dorcas_mutisya
@@ -12,11 +12,19 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind 0.0.0.0:8000 customers_orders_project.wsgi:application  # Used gunicorn
     volumes:
       - .:/app
     ports:
       - "8000:8000"
-      
     depends_on:
       - db
+    env_file:
+      - .env  # To tell Docker Compose to use the .env file
+    environment:
+      POSTGRES_DB: Customer_Order  # Added these for Django to connect to DB
+      POSTGRES_USER: dorcas_mutisya
+      POSTGRES_PASSWORD: 1244
+      DB_HOST: db                   
+      SECRET_KEY: ${SECRET_KEY}    # SECRET_KEY from .env
+

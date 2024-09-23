@@ -33,6 +33,7 @@ urlpatterns = [
     path('api/', include('orders.urls')),  # Include the orders URLs
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
+  
     
 ]
 

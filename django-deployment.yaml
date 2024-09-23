@@ -14,6 +14,22 @@ spec:
     spec:
       containers:
       - name: django-app
-        image: munaa428/my_project_image:latest  # My image  name
+        image: munaa428/my_project_image:latest  # Your image
         ports:
         - containerPort: 8000
+        env:
+          - name: DATABASE_URL
+            value: "postgres://dorcas_mutisya:1244@postgres:5432/Customer_Order"
+          # Adding the Africa's Talking environment variables from the secret
+          - name: AFRICASTALKING_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: africastalking-secret
+                key: AFRICASTALKING_USERNAME
+          - name: AFRICASTALKING_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: africastalking-secret
+                key: AFRICASTALKING_API_KEY
+ 
+

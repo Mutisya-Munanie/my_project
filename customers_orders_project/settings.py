@@ -50,8 +50,8 @@ DATABASES = {
         'NAME': 'Customer_Order',  
         'USER': 'dorcas_mutisya',  
         'PASSWORD': '1244',        
-        'HOST': 'db',              
-        'PORT': '5432',            # Default PostgreSQL port
+        'HOST': 'localhost',              
+        'PORT': '5432',            
     }
 }
 

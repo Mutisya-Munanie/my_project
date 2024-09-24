@@ -1,11 +1,12 @@
 
  # tests/test_sms_utils.py
 
+
 # test_sms_utils.py
 import unittest
 from unittest.mock import patch
-from orders.sms_utils import send_sms_alert_to_customer  # Adjust the import based on your project structure
 from collections import namedtuple
+from orders.sms_utils import send_sms_alert_to_customer  # Adjust the import based on your project structure
 
 # Create a simple Customer class for testing
 Customer = namedtuple('Customer', ['name', 'phone_number'])
@@ -27,6 +28,3 @@ class TestSmsUtils(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
-

@@ -34,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY', default='your-default-secret-key')
 
 # Fetch DEBUG mode from environment variables
-DEBUG = env.bool('DEBUG', default=True)
+DEBUG = env.bool('DEBUG', default=False)
 
 # Fetch Allowed Hosts from environment variables
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
